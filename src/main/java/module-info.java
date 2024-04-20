@@ -11,6 +11,7 @@ module com.example.vidguessr.vidguessr {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires javafx.media;
+    requires json.simple;
 
     opens com.example.vidguessr.vidguessr to javafx.fxml;
     exports com.example.vidguessr.vidguessr;

@@ -23,7 +23,7 @@ public class Game {
     }
 
     public void playVideo() {
-        Media media = new Media("https://res.cloudinary.com/dacy5mp1g/video/upload/v1627368105/samples/sea-turtle.mp4");
+        Media media = new Media("https://www.youtube.com/embed/OOjcm2WGojQ?si=mOzKZH4qiD18xl1U");
         MediaPlayer player = new MediaPlayer(media);
         player.play();
         player.setAutoPlay(true);

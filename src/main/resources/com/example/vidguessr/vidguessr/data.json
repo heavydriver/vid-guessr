@@ -1,0 +1,26 @@
+{
+  "easy": [
+    {
+      "locationName": "Brooklyn Bridge New York",
+      "locationLatitude": "40.7061275983149",
+      "locationLongitude": "-73.99688540952188",
+      "videoURL": "https://res.cloudinary.com/dacy5mp1g/video/upload/v1713650316/videos/easy/iapqv8vptitnjazbwzkh.mp4"
+    }
+  ],
+  "medium": [
+    {
+      "locationName": "",
+      "locationLatitude": "",
+      "locationLongitude": "",
+      "videoURL": ""
+    }
+  ],
+  "hard": [
+    {
+      "locationName": "",
+      "locationLatitude": "",
+      "locationLongitude": "",
+      "videoURL": ""
+    }
+  ]
+}
