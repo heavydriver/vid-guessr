@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 public class GameManager {
-    public static final int MAX_LOCATIONS = 1;
+    public static final int MAX_LOCATIONS = 2;
     public static final String LATITUDE_KEY = "locationLatitude";
     public static final String LONGITUDE_KEY = "locationLatitude";
     public static final String URL_KEY = "videoURL";
