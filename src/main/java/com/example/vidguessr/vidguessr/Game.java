@@ -1,13 +1,18 @@
 package com.example.vidguessr.vidguessr;
 
+import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import org.jxmapviewer.JXMapViewer;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class Game {
@@ -26,6 +31,7 @@ public class Game {
     public VBox mapContainer;
     public Button guessButton;
     public Button confirmButton;
+    public AnchorPane mapView;
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
@@ -56,11 +62,25 @@ public class Game {
     }
 
     public void showMap(ActionEvent event) {
-
-//        mapContainer.getChildren().addFirst(map);
         mapContainer.setVisible(true);
         mapContainer.setDisable(false);
-//        currentRound += 1;
-//        startRound();
+
+        SwingNode swingNode = new SwingNode();
+        createSwingContent(swingNode);
+
+        mapView.getChildren().add(swingNode);
+    }
+
+    private void createSwingContent(final SwingNode swingNode) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JXMapViewer map = new MyMap().getMap();
+                map.setPreferredSize(new Dimension(1000, 1000));
+//                map.setPreferredSize(new Dimension((int) mapView.getWidth(), (int) mapView.getHeight()));
+
+                swingNode.setContent(map);
+            }
+        });
     }
 }

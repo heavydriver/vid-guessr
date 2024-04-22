@@ -12,6 +12,10 @@ module com.example.vidguessr.vidguessr {
     requires com.almasb.fxgl.all;
     requires javafx.media;
     requires json.simple;
+    requires org.jxmapviewer.jxmapviewer2;
+    requires java.desktop;
+    requires commons.logging;
+    requires javafx.swing;
 
     opens com.example.vidguessr.vidguessr to javafx.fxml;
     exports com.example.vidguessr.vidguessr;
