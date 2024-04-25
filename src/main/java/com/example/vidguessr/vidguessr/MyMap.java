@@ -16,14 +16,18 @@ import java.util.List;
 import java.util.Set;
 
 public class MyMap extends JComponent {
+    public static final double EARTH_RADIUS = 6371.0;
+
     private JXMapViewer mapViewer;
+    private double markerLat;
+    private double markerLng;
 
     public MyMap() {
         drawMap();
     }
 
     private void drawMap() {
-        TileFactoryInfo info = new OSMTileFactoryInfo();
+        TileFactoryInfo info = new OSMTileFactoryInfo("", "https://tile.openstreetmap.org");
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);
 
         // Setup local file cache
@@ -50,13 +54,16 @@ public class MyMap extends JComponent {
             @Override
             public void mapClicked(GeoPosition geoPosition) {
                 System.out.println(geoPosition.getLatitude() + " " + geoPosition.getLongitude());
-                GeoPosition frankfurt = new GeoPosition(geoPosition.getLatitude(), geoPosition.getLongitude());
+                GeoPosition marker = new GeoPosition(geoPosition.getLatitude(), geoPosition.getLongitude());
 
-                Set<Waypoint> waypoints = new HashSet<Waypoint>(List.of(new DefaultWaypoint(frankfurt)));
+                markerLat = geoPosition.getLatitude();
+                markerLng = geoPosition.getLongitude();
+
+                Set<Waypoint> waypoints = new HashSet<Waypoint>(List.of(new DefaultWaypoint(marker)));
 
                 WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
                 waypointPainter.setWaypoints(waypoints);
-                waypointPainter.setRenderer(new MyWaypointRenderer());
+                waypointPainter.setRenderer(new DefaultWaypointRenderer());
 
                 mapViewer.setOverlayPainter(waypointPainter);
             }
@@ -65,5 +72,28 @@ public class MyMap extends JComponent {
 
     public JXMapViewer getMap() {
         return mapViewer;
+    }
+
+    public GeoPosition getMarkerPos() {
+        return new GeoPosition(markerLat, markerLng);
+    }
+
+    public double calculateDistance(GeoPosition markerPos, GeoPosition actualPos) {
+        // Convert latitude and longitude from degrees to radians
+        double lat1Rad = Math.toRadians(markerPos.getLatitude());
+        double lon1Rad = Math.toRadians(markerPos.getLongitude());
+        double lat2Rad = Math.toRadians(actualPos.getLatitude());
+        double lon2Rad = Math.toRadians(actualPos.getLongitude());
+
+        // Calculate the differences in coordinates
+        double dLat = lat2Rad - lat1Rad;
+        double dLon = lon2Rad - lon1Rad;
+
+        // Haversine formula
+        double a = Math.pow(Math.sin(dLat / 2), 2) + Math.cos(lat1Rad) * Math.cos(lat2Rad) * Math.pow(Math.sin(dLon / 2), 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        // Calculate the distance
+        return EARTH_RADIUS * c;
     }
 }
