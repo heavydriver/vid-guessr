@@ -1,5 +1,6 @@
 package com.example.vidguessr.vidguessr;
 
+import animatefx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -43,16 +44,9 @@ public class Home {
         Game myGame = fxmlLoader.getController();
         myGame.setDifficulty(difficulty);
 
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 1200, 700);
-        stage.setScene(scene);
-        stage.show();
+        scene = ((Node)event.getSource()).getScene();
+        scene.setRoot(root);
 
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent windowEvent) {
-                Platform.exit();
-            }
-        });
+        new FadeIn(root).play();
     }
 }

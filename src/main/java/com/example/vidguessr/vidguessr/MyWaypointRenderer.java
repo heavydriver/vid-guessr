@@ -38,17 +38,17 @@ public class MyWaypointRenderer implements WaypointRenderer<Waypoint>
      */
     public MyWaypointRenderer()
     {
-        URL resource = getClass().getResource("285659_marker_map_icon.png");
+        URL resource = getClass().getResource("images/playerMapMarker.png");
 
         try
         {
             assert resource != null;
-            origImage = ImageIO.read(new File("285659_marker_map_icon.png"));
+            origImage = ImageIO.read(resource);
         }
         catch (Exception ex)
         {
             System.out.println(resource);
-            log.warn("couldn't read 285659_marker_map_icon.png", ex);
+            log.warn("couldn't read playerMapMarker.png", ex);
         }
     }
 

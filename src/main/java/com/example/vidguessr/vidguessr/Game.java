@@ -1,7 +1,9 @@
 package com.example.vidguessr.vidguessr;
 
+import animatefx.animation.FadeIn;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,6 +16,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.viewer.GeoPosition;
 
@@ -42,6 +45,7 @@ public class Game {
     private boolean isGuessClicked;
     private int totalScore;
     private List<Integer> roundScores;
+    private ActionEvent confirmButtonEvent;
 
 
     @FXML
@@ -61,6 +65,8 @@ public class Game {
     }
 
     public void startRound() {
+        confirmButton.setDisable(true);
+
         if (currentRound <= locations.size()) {
             Location currentLocation = locations.get(currentRound - 1);
             playVideo(currentLocation.getVideoURL());
@@ -79,10 +85,10 @@ public class Game {
                 result.setScores(totalScore, roundScores);
                 result.displayResult();
 
-                stage = (Stage) mediaView.getScene().getWindow();
-                scene = new Scene(root, 1200, 700);
-                stage.setScene(scene);
-                stage.show();
+                scene = ((Node)confirmButtonEvent.getSource()).getScene();
+                scene.setRoot(root);
+
+                new FadeIn(root).play();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
@@ -128,6 +134,8 @@ public class Game {
         mapContainer.setDisable(true);
         guessButton.setDisable(false);
 
+        confirmButtonEvent = event;
+
         startNextRound();
     }
 
@@ -149,7 +157,7 @@ public class Game {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                mapController = new MyMap();
+                mapController = new MyMap(confirmButton);
                 map = mapController.getMap();
 
                 map.setPreferredSize(new Dimension((int) mapView.getWidth(), (int) mapView.getHeight()));

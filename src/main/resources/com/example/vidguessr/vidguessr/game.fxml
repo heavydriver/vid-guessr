@@ -50,7 +50,7 @@
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/silver-close-button-png-15.png" />
+                                    <Image url="@images/closeButtonIcon.png" />
                                  </image>
                               </ImageView>
                            </graphic>

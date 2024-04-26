@@ -1,5 +1,6 @@
 package com.example.vidguessr.vidguessr;
 
+import javafx.scene.control.Button;
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.VirtualEarthTileFactoryInfo;
@@ -21,13 +22,15 @@ public class MyMap extends JComponent {
     private JXMapViewer mapViewer;
     private double markerLat;
     private double markerLng;
+    private Button confirmButton;
 
-    public MyMap() {
+    public MyMap(Button button) {
+        confirmButton = button;
         drawMap();
     }
 
     private void drawMap() {
-        TileFactoryInfo info = new OSMTileFactoryInfo("", "https://tile.openstreetmap.org");
+        TileFactoryInfo info = new MyMapTileFactoryInfo("", "https://api.maptiler.com/maps/streets-v2/256");
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);
 
         // Setup local file cache
@@ -63,9 +66,10 @@ public class MyMap extends JComponent {
 
                 WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
                 waypointPainter.setWaypoints(waypoints);
-                waypointPainter.setRenderer(new DefaultWaypointRenderer());
+                waypointPainter.setRenderer(new MyWaypointRenderer());
 
                 mapViewer.setOverlayPainter(waypointPainter);
+                confirmButton.setDisable(false);
             }
         });
     }

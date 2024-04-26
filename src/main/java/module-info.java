@@ -16,6 +16,7 @@ module com.example.vidguessr.vidguessr {
     requires java.desktop;
     requires commons.logging;
     requires javafx.swing;
+    requires AnimateFX;
 
     opens com.example.vidguessr.vidguessr to javafx.fxml;
     exports com.example.vidguessr.vidguessr;

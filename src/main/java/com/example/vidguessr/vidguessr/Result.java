@@ -1,5 +1,6 @@
 package com.example.vidguessr.vidguessr;
 
+import animatefx.animation.FadeIn;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -43,19 +44,12 @@ public class Result {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
             root = fxmlLoader.load();
 
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root, 1200, 700);
-            stage.setScene(scene);
-            stage.show();
+            scene = ((Node)event.getSource()).getScene();
+            scene.setRoot(root);
+
+            new FadeIn(root).play();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent windowEvent) {
-                Platform.exit();
-            }
-        });
     }
 }
