@@ -14,6 +14,10 @@ public class GameManager {
     public static final String LONGITUDE_KEY = "locationLongitude";
     public static final String URL_KEY = "videoURL";
 
+    public static final List<String> highMotivationalExpressions = List.of("Outstanding", "Incredible", "Spectacular", "Remarkable", "Amazing");
+    public static final List<String> mediumMotivationalExpressions = List.of("Great job", "Well done", "Keep it up", "Nice work", "Impressive effort");
+    public static final List<String> lowMotivationalExpressions = List.of("Good try", "Keep practicing", "Don't give up", "You'll get there", "Better luck next time");
+
     private final String difficulty;
     private JSONArray allLocations;
     private List<Location> randomlySelectedLocations;

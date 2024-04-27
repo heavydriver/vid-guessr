@@ -114,20 +114,45 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
+                                    <Label fx:id="roundTextLabel" text="FANTASTIC!" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="45.0" />
+                                       </VBox.margin>
+                                    </Label>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="roundScoreLabel" text="5000" textFill="WHITE">
+                                          <Label fx:id="roundScoreLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="106.0" text="0" textAlignment="RIGHT" textFill="WHITE" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="45.0" />
                                              </font>
+                                             <padding>
+                                                <Insets bottom="-15.0" top="-15.0" />
+                                             </padding>
                                           </Label>
                                           <Label layoutX="297.0" layoutY="17.0" text=" / 5000" textFill="WHITE">
                                              <font>
                                                 <Font size="31.0" />
                                              </font>
+                                             <padding>
+                                                <Insets bottom="-15.0" top="-15.0" />
+                                             </padding>
                                           </Label>
                                        </children>
+                                       <padding>
+                                          <Insets bottom="-20.0" top="-20.0" />
+                                       </padding>
                                     </HBox>
+                                    <Label fx:id="roundOffByLabel" alignment="CENTER" contentDisplay="CENTER" text="Off By 10000 miles" textFill="#f4f2f2">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="4.0" left="35.0" />
+                                       </VBox.margin>
+                                    </Label>
                                  </children>
                               </VBox>
                               <Button fx:id="nextRoundButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startNextRound" prefHeight="81.0" prefWidth="122.0" style="-fx-background-color: #4793AF;" text="Next" textFill="WHITE">

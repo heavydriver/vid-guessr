@@ -1,7 +1,6 @@
 package com.example.vidguessr.vidguessr;
 
-import animatefx.animation.FadeIn;
-import animatefx.animation.SlideInRight;
+import animatefx.animation.*;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,6 +27,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
     public static final String EASY_DIFFICULTY = "easy";
@@ -63,6 +63,9 @@ public class Game {
     public HBox roundResult;
     public Button closeMapButton;
     public Label roundScoreLabel;
+    public Label roundOffByLabel;
+    public Label roundTextLabel;
+    public Button nextRoundButton;
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
@@ -86,7 +89,7 @@ public class Game {
         closeMapButton.setVisible(true);
         closeMapButton.setDisable(false);
 
-        mapContainer.setStyle("-fx-background-color: #393E46;");
+        roundResult.setStyle("-fx-background-color: #393E46;");
 
         if (currentRound <= locations.size()) {
             Location currentLocation = locations.get(currentRound - 1);
@@ -141,9 +144,14 @@ public class Game {
 
     public void showMap(ActionEvent event) {
         mediaView.getMediaPlayer().pause();
+
+        new Pulse(guessButton).play();
+
         mapContainer.setVisible(true);
         mapContainer.setDisable(false);
         guessButton.setDisable(true);
+
+        new FadeInUp(mapContainer).play();
 
         if (mute)
             muteButton.setDisable(true);
@@ -180,22 +188,28 @@ public class Game {
         confirmButtonEvent = event;
 
         mapController.drawRoute(playerPosition, actualPosition);
+        new FadeInUp(mapView).play();
 
         if (score >= 4000) {
-            mapContainer.setStyle("-fx-background-color: #41B06E;");
+            roundResult.setStyle("-fx-background-color: #41B06E;");
+            roundTextLabel.setText(GameManager.highMotivationalExpressions.get(new Random().nextInt(GameManager.highMotivationalExpressions.size())) + "!");
         } else if (score >= 1000) {
-            mapContainer.setStyle("-fx-background-color: #FF8A08;");
+            roundResult.setStyle("-fx-background-color: #FF8A08;");
+            roundTextLabel.setText(GameManager.mediumMotivationalExpressions.get(new Random().nextInt(GameManager.mediumMotivationalExpressions.size())) + "!");
         } else {
-            mapContainer.setStyle("-fx-background-color: #D24545;");
+            roundResult.setStyle("-fx-background-color: #D24545;");
+            roundTextLabel.setText(GameManager.lowMotivationalExpressions.get(new Random().nextInt(GameManager.lowMotivationalExpressions.size())) + "!");
         }
 
         roundScoreLabel.setText(String.valueOf(score));
+        roundOffByLabel.setText("Off by " + (Math.round(distance * 0.621371d * 100) / 100d) + " miles");
 
-//        startNextRound();
+        new FadeInUp(roundResult).play();
     }
 
     public void startNextRound() {
-        mapContainer.setVisible(false);
+        new FadeOutDown(mapContainer).play();
+//        mapContainer.setVisible(false);
         mapContainer.setDisable(true);
 
         confirmButton.setVisible(true);
@@ -207,7 +221,8 @@ public class Game {
     }
 
     public void closeMap(ActionEvent event) {
-        mapContainer.setVisible(false);
+        new FadeOutDown(mapContainer).play();
+//        mapContainer.setVisible(false);
         mapContainer.setDisable(true);
         guessButton.setDisable(false);
 
@@ -227,11 +242,15 @@ public class Game {
             muteButton.setVisible(true);
             muteButton.setDisable(false);
 
+            new Pulse(muteButton).play();
+
             unmuteButton.setVisible(false);
             unmuteButton.setDisable(true);
         } else {
             muteButton.setVisible(false);
             muteButton.setDisable(true);
+
+            new Pulse(unmuteButton).play();
 
             unmuteButton.setVisible(true);
             unmuteButton.setDisable(false);
