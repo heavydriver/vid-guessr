@@ -1,6 +1,7 @@
 package com.example.vidguessr.vidguessr;
 
 import animatefx.animation.FadeIn;
+import animatefx.animation.SlideInRight;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -46,6 +48,7 @@ public class Game {
     private int totalScore;
     private List<Integer> roundScores;
     private ActionEvent confirmButtonEvent;
+    private boolean mute;
 
 
     @FXML
@@ -54,6 +57,8 @@ public class Game {
     public Button guessButton;
     public Button confirmButton;
     public AnchorPane mapView;
+    public Button muteButton;
+    public Button unmuteButton;
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
@@ -61,11 +66,15 @@ public class Game {
         locations = myGame.getLocations();
         currentRound = 1;
         roundScores = new ArrayList<>();
+        mute = true;
         startRound();
     }
 
     public void startRound() {
         confirmButton.setDisable(true);
+        guessButton.setDisable(true);
+        muteButton.setDisable(true);
+        unmuteButton.setDisable(true);
 
         if (currentRound <= locations.size()) {
             Location currentLocation = locations.get(currentRound - 1);
@@ -88,10 +97,9 @@ public class Game {
                 scene = ((Node)confirmButtonEvent.getSource()).getScene();
                 scene.setRoot(root);
 
-                new FadeIn(root).play();
+                new SlideInRight(root).play();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
-                e.printStackTrace();
             }
         }
     }
@@ -101,16 +109,34 @@ public class Game {
         MediaPlayer player = new MediaPlayer(media);
         player.play();
         player.setAutoPlay(true);
-        player.setMute(true);
+        player.setMute(mute);
         player.setCycleCount(Integer.MAX_VALUE);
+
+        player.setOnReady(new Runnable() {
+            @Override
+            public void run() {
+                guessButton.setDisable(false);
+
+                if (mute)
+                    muteButton.setDisable(false);
+                else
+                    unmuteButton.setDisable(false);
+            }
+        });
 
         mediaView.setMediaPlayer(player);
     }
 
     public void showMap(ActionEvent event) {
+        mediaView.getMediaPlayer().pause();
         mapContainer.setVisible(true);
         mapContainer.setDisable(false);
         guessButton.setDisable(true);
+
+        if (mute)
+            muteButton.setDisable(true);
+        else
+            unmuteButton.setDisable(true);
 
         if (!isGuessClicked) {
             SwingNode swingNode = new SwingNode();
@@ -149,6 +175,32 @@ public class Game {
         mapContainer.setVisible(false);
         mapContainer.setDisable(true);
         guessButton.setDisable(false);
+
+        if (mute)
+            muteButton.setDisable(false);
+        else
+            unmuteButton.setDisable(false);
+
+        mediaView.getMediaPlayer().play();
+    }
+
+    public void muteUnmute(ActionEvent event) {
+        mute = !mute;
+        mediaView.getMediaPlayer().setMute(mute);
+
+        if (mute) {
+            muteButton.setVisible(true);
+            muteButton.setDisable(false);
+
+            unmuteButton.setVisible(false);
+            unmuteButton.setDisable(true);
+        } else {
+            muteButton.setVisible(false);
+            muteButton.setDisable(true);
+
+            unmuteButton.setVisible(true);
+            unmuteButton.setDisable(false);
+        }
     }
 
     private void createSwingContent(final SwingNode swingNode) {

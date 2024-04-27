@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -25,6 +26,42 @@
       <StackPane prefHeight="700.0" prefWidth="1200.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <children>
             <MediaView fx:id="mediaView" fitHeight="680.0" fitWidth="1180.0" preserveRatio="false" StackPane.alignment="CENTER" />
+            <Button fx:id="muteButton" alignment="CENTER" mnemonicParsing="false" onAction="#muteUnmute" style="-fx-background-color: #393E46;" StackPane.alignment="TOP_RIGHT">
+               <StackPane.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </StackPane.margin>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/mute.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.83" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="unmuteButton" alignment="CENTER" disable="true" layoutX="1155.0" layoutY="25.0" mnemonicParsing="false" onAction="#muteUnmute" style="-fx-background-color: #393E46;" visible="false" StackPane.alignment="TOP_RIGHT">
+               <graphic>
+                  <ImageView fx:id="unmute" fitHeight="27.0" fitWidth="24.0" onDragDetected="#muteUnmute" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/volume.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.83" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <StackPane.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </StackPane.margin>
+            </Button>
             <Button fx:id="guessButton" mnemonicParsing="false" onAction="#showMap" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #E3651D; -fx-background-radius: 30;" text="Guess" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
                <StackPane.margin>
                   <Insets bottom="20.0" />

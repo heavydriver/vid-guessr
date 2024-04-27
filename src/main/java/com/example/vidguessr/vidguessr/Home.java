@@ -47,6 +47,6 @@ public class Home {
         scene = ((Node)event.getSource()).getScene();
         scene.setRoot(root);
 
-        new FadeIn(root).play();
+        new SlideInRight(root).play();
     }
 }
