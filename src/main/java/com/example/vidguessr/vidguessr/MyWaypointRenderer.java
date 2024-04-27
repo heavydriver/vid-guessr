@@ -36,9 +36,9 @@ public class MyWaypointRenderer implements WaypointRenderer<Waypoint>
     /**
      * Uses a default waypoint image
      */
-    public MyWaypointRenderer()
+    public MyWaypointRenderer(String imageId)
     {
-        URL resource = getClass().getResource("images/playerMapMarker.png");
+        URL resource = getClass().getResource("images/" + imageId + "MapMarker.png");
 
         try
         {

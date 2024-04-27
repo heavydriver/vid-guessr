@@ -1,20 +1,28 @@
 package com.example.vidguessr.vidguessr;
 
-import javafx.scene.control.Button;
-import org.jxmapviewer.JXMapViewer;
-import org.jxmapviewer.OSMTileFactoryInfo;
-import org.jxmapviewer.VirtualEarthTileFactoryInfo;
-import org.jxmapviewer.cache.FileBasedLocalCache;
-import org.jxmapviewer.input.*;
-import org.jxmapviewer.viewer.*;
-
-import javax.swing.*;
-import javax.swing.event.MouseInputListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+
+import javafx.scene.control.Button;
+import org.jxmapviewer.JXMapViewer;
+import org.jxmapviewer.OSMTileFactoryInfo;
+import org.jxmapviewer.cache.FileBasedLocalCache;
+import org.jxmapviewer.input.*;
+import org.jxmapviewer.painter.CompoundPainter;
+import org.jxmapviewer.painter.Painter;
+import org.jxmapviewer.viewer.DefaultTileFactory;
+import org.jxmapviewer.viewer.DefaultWaypoint;
+import org.jxmapviewer.viewer.GeoPosition;
+import org.jxmapviewer.viewer.TileFactoryInfo;
+import org.jxmapviewer.viewer.Waypoint;
+import org.jxmapviewer.viewer.WaypointPainter;
 
 public class MyMap extends JComponent {
     public static final double EARTH_RADIUS = 6371.0;
@@ -66,7 +74,7 @@ public class MyMap extends JComponent {
 
                 WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
                 waypointPainter.setWaypoints(waypoints);
-                waypointPainter.setRenderer(new MyWaypointRenderer());
+                waypointPainter.setRenderer(new MyWaypointRenderer("player"));
 
                 mapViewer.setOverlayPainter(waypointPainter);
                 confirmButton.setDisable(false);
@@ -99,5 +107,33 @@ public class MyMap extends JComponent {
 
         // Calculate the distance
         return EARTH_RADIUS * c;
+    }
+
+    public void drawRoute(GeoPosition markerPos, GeoPosition actualPos) {
+        List<GeoPosition> track = Arrays.asList(markerPos, actualPos);
+        MyRoutePainter routePainter = new MyRoutePainter(track);
+
+        // Set the focus
+        mapViewer.zoomToBestFit(new HashSet<GeoPosition>(track), 0.7);
+
+        // Create waypoints from the geo-positions
+        Set<Waypoint> playerWaypoints = new HashSet<Waypoint>(List.of(new DefaultWaypoint(markerPos)));
+        WaypointPainter<Waypoint> playerWaypointsPainter = new WaypointPainter<Waypoint>();
+        playerWaypointsPainter.setWaypoints(playerWaypoints);
+        playerWaypointsPainter.setRenderer(new MyWaypointRenderer("player"));
+
+        Set<Waypoint> actualWaypoints = new HashSet<Waypoint>(List.of(new DefaultWaypoint(actualPos)));
+        WaypointPainter<Waypoint> actualWaypointsPainter = new WaypointPainter<Waypoint>();
+        actualWaypointsPainter.setWaypoints(actualWaypoints);
+        actualWaypointsPainter.setRenderer(new MyWaypointRenderer("actualLocation"));
+
+        // Create a compound painter that uses both the route-painter and the waypoint-painter
+        List<Painter<JXMapViewer>> painters = new ArrayList<Painter<JXMapViewer>>();
+        painters.add(routePainter);
+        painters.add(playerWaypointsPainter);
+        painters.add(actualWaypointsPainter);
+
+        CompoundPainter<JXMapViewer> painter = new CompoundPainter<JXMapViewer>(painters);
+        mapViewer.setOverlayPainter(painter);
     }
 }

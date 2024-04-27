@@ -11,12 +11,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.jxmapviewer.JXMapViewer;
@@ -59,6 +60,9 @@ public class Game {
     public AnchorPane mapView;
     public Button muteButton;
     public Button unmuteButton;
+    public HBox roundResult;
+    public Button closeMapButton;
+    public Label roundScoreLabel;
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
@@ -75,6 +79,14 @@ public class Game {
         guessButton.setDisable(true);
         muteButton.setDisable(true);
         unmuteButton.setDisable(true);
+
+        roundResult.setVisible(false);
+        roundResult.setDisable(true);
+
+        closeMapButton.setVisible(true);
+        closeMapButton.setDisable(false);
+
+        mapContainer.setStyle("-fx-background-color: #393E46;");
 
         if (currentRound <= locations.size()) {
             Location currentLocation = locations.get(currentRound - 1);
@@ -148,6 +160,15 @@ public class Game {
     }
 
     public void confirmPlayerLocation(ActionEvent event) {
+        confirmButton.setVisible(false);
+        confirmButton.setDisable(true);
+
+        roundResult.setVisible(true);
+        roundResult.setDisable(false);
+
+        closeMapButton.setVisible(false);
+        closeMapButton.setDisable(true);
+
         GeoPosition playerPosition = mapController.getMarkerPos();
 
         int distance = (int) Math.round(mapController.calculateDistance(playerPosition, actualPosition));
@@ -156,16 +177,30 @@ public class Game {
         roundScores.add(currentRound - 1, score);
         totalScore += score;
 
-        mapContainer.setVisible(false);
-        mapContainer.setDisable(true);
-        guessButton.setDisable(false);
-
         confirmButtonEvent = event;
 
-        startNextRound();
+        mapController.drawRoute(playerPosition, actualPosition);
+
+        if (score >= 4000) {
+            mapContainer.setStyle("-fx-background-color: #41B06E;");
+        } else if (score >= 1000) {
+            mapContainer.setStyle("-fx-background-color: #FF8A08;");
+        } else {
+            mapContainer.setStyle("-fx-background-color: #D24545;");
+        }
+
+        roundScoreLabel.setText(String.valueOf(score));
+
+//        startNextRound();
     }
 
     public void startNextRound() {
+        mapContainer.setVisible(false);
+        mapContainer.setDisable(true);
+
+        confirmButton.setVisible(true);
+        confirmButton.setDisable(false);
+
         currentRound += 1;
         isGuessClicked = false;
         startRound();
