@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
@@ -66,6 +67,9 @@ public class Game {
     public Label roundOffByLabel;
     public Label roundTextLabel;
     public Button nextRoundButton;
+    public ProgressIndicator loader;
+    public VBox restartContainer;
+    public Button restartButton;
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
@@ -120,6 +124,9 @@ public class Game {
     }
 
     public void playVideo(String videoURL) {
+        loader.setVisible(true);
+        loader.setDisable(false);
+
         Media media = new Media(videoURL);
         MediaPlayer player = new MediaPlayer(media);
         player.play();
@@ -136,6 +143,22 @@ public class Game {
                     muteButton.setDisable(false);
                 else
                     unmuteButton.setDisable(false);
+
+                loader.setVisible(false);
+                loader.setDisable(true);
+            }
+        });
+
+        player.setOnError(new Runnable() {
+            @Override
+            public void run() {
+                loader.setVisible(false);
+                loader.setDisable(true);
+
+                restartContainer.setVisible(true);
+                restartContainer.setDisable(false);
+
+                restartContainer.toFront();
             }
         });
 
@@ -197,7 +220,7 @@ public class Game {
             roundResult.setStyle("-fx-background-color: #FF8A08;");
             roundTextLabel.setText(GameManager.mediumMotivationalExpressions.get(new Random().nextInt(GameManager.mediumMotivationalExpressions.size())) + "!");
         } else {
-            roundResult.setStyle("-fx-background-color: #D24545;");
+            roundResult.setStyle("-fx-background-color: #F05454;");
             roundTextLabel.setText(GameManager.lowMotivationalExpressions.get(new Random().nextInt(GameManager.lowMotivationalExpressions.size())) + "!");
         }
 
@@ -254,6 +277,20 @@ public class Game {
 
             unmuteButton.setVisible(true);
             unmuteButton.setDisable(false);
+        }
+    }
+
+    public void restartGame(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
+            root = fxmlLoader.load();
+
+            scene = ((Node)event.getSource()).getScene();
+            scene.setRoot(root);
+
+            new SlideInLeft(root).play();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 

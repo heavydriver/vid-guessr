@@ -1,6 +1,7 @@
 package com.example.vidguessr.vidguessr;
 
 import animatefx.animation.FadeIn;
+import animatefx.animation.SlideInLeft;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -47,7 +48,7 @@ public class Result {
             scene = ((Node)event.getSource()).getScene();
             scene.setRoot(root);
 
-            new FadeIn(root).play();
+            new SlideInLeft(root).play();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
