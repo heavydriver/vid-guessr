@@ -111,7 +111,6 @@ public class Game {
 
                 Result result = fxmlLoader.getController();
                 result.setScores(totalScore, roundScores);
-                result.displayResult();
 
                 scene = ((Node)confirmButtonEvent.getSource()).getScene();
                 scene.setRoot(root);

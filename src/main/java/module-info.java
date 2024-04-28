@@ -17,6 +17,9 @@ module com.example.vidguessr.vidguessr {
     requires commons.logging;
     requires javafx.swing;
     requires AnimateFX;
+    requires org.mongodb.driver.sync.client;
+    requires org.mongodb.driver.core;
+    requires org.mongodb.bson;
 
     opens com.example.vidguessr.vidguessr to javafx.fxml;
     exports com.example.vidguessr.vidguessr;
