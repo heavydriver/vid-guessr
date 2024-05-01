@@ -38,7 +38,7 @@ public class LeaderBoardDatabase {
                 .build();
     }
 
-    public void updateLeaderboard(String username, int score) {
+    public void updateLeaderboard(String username, int score) throws MongoException {
         try(MongoClient mongoClient = MongoClients.create(settings)) {
             MongoDatabase database = mongoClient.getDatabase("vidGuessr");
             MongoCollection<Document> collection = database.getCollection(gameDifficulty);
@@ -49,14 +49,10 @@ public class LeaderBoardDatabase {
 
             UpdateOptions options = new UpdateOptions().upsert(true);
 
-            try {
-                UpdateResult result = collection.updateOne(quey, updates, options);
+            UpdateResult result = collection.updateOne(quey, updates, options);
 
-                System.out.println("Modified document count: " + result.getModifiedCount());
-                System.out.println("Upserted id: " + result.getUpsertedId());
-            } catch (MongoException e) {
-                System.out.println("Unable to update database" + e);
-            }
+            System.out.println("Modified document count: " + result.getModifiedCount());
+            System.out.println("Upserted id: " + result.getUpsertedId());
         }
     }
 
