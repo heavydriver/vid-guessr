@@ -1,22 +1,76 @@
 {
   "easy": [
     {
-      "locationName": "Brooklyn Bridge New York",
-      "locationLatitude": "40.7061275983149",
-      "locationLongitude": "-73.99688540952188",
-      "videoURL": "https://res.cloudinary.com/dacy5mp1g/video/upload/v1713650316/videos/easy/iapqv8vptitnjazbwzkh.mp4"
+      "locationName": "Burj Khalifa, Dubai City, UAE",
+      "locationLatitude": "25.194338297838033",
+      "locationLongitude": "55.276980433945255",
+      "videoURL": "videos/easy/burjKhalifa.mp4"
     },
     {
-      "locationName": "Dubai",
-      "locationLatitude": "25.06570000",
-      "locationLongitude": "55.17128000",
-      "videoURL": "https://cdn.pixabay.com/video/2020/08/29/48504-454713939_large.mp4"
+      "locationName": "Colosseum, Rome, Italy",
+      "locationLatitude": "41.89040187264617",
+      "locationLongitude": "12.492204087152379",
+      "videoURL": "videos/easy/colosseum.mp4"
     },
     {
-      "locationName": "Sydney",
-      "locationLatitude": "-33.86785000",
-      "locationLongitude": "151.20732000",
-      "videoURL": "https://cdn.pixabay.com/video/2020/08/16/47304-451297002_large.mp4"
+      "locationName": "Eiffel Tower, Paris, France",
+      "locationLatitude": "48.85849009069029",
+      "locationLongitude": "2.2944652113794572",
+      "videoURL": "videos/easy/eiffelTower.mp4"
+    },
+    {
+      "locationName": "Golden Gate Bridge, San Francisco, USA",
+      "locationLatitude": "37.82034629758483",
+      "locationLongitude": "-122.47867798722524",
+      "videoURL": "videos/easy/goldenGateBridge.mp4"
+    },
+    {
+      "locationName": "Great Wall of China, China",
+      "locationLatitude": "40.432532241491586",
+      "locationLongitude": "116.57037014005083",
+      "videoURL": "videos/easy/greatWallOfChina.mp4"
+    },
+    {
+      "locationName": "Hollywood Boulevard, Los Angles, California, USA",
+      "locationLatitude": "34.1017409351006",
+      "locationLongitude": "-118.340272689392",
+      "videoURL": "videos/easy/hollywoodBoulevard.mp4"
+    },
+    {
+      "locationName": "Legacy West, Plano, Texas, USA",
+      "locationLatitude": "33.08117000833946",
+      "locationLongitude": "-96.82637430134754",
+      "videoURL": "videos/easy/legacyWest.mp4"
+    },
+    {
+      "locationName": "London Bridge, London, UK",
+      "locationLatitude": "51.50798835205343",
+      "locationLongitude": "-0.08776959706070382",
+      "videoURL": "videos/easy/londonBridge.mp4"
+    },
+    {
+      "locationName": "Midtown Manhattan, New York, USA",
+      "locationLatitude": "40.75334548610368",
+      "locationLongitude": "-73.97955798963604",
+      "videoURL": "videos/easy/midtownManhattan.mp4"
+    },
+    {
+      "locationName": "Statue of Liberty, New York, USA",
+      "locationLatitude": "40.689456748734365",
+      "locationLongitude": "-74.04436594363615",
+      "videoURL": "videos/easy/statueOfLiberty.mp4"
+    },
+    {
+      "locationName": "Sydney Opera House, Australia",
+      "locationLatitude": "33.856159",
+      "locationLongitude": "151.215256",
+      "videoURL": "videos/easy/sydneyOperaHouse.mp4"
+    },
+    {
+      "locationName": "Taj Mahal, Agra, India",
+      "locationLatitude": "27.17533895593533",
+      "locationLongitude": "78.04209878421432",
+      "videoURL": "videos/easy/tajMahal.mp4"
     }
   ],
   "medium": [

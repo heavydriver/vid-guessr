@@ -105,7 +105,7 @@ public class Home implements Initializable {
 
         if (username.length() < 2) {
             try {
-                usernameFile = new File(Objects.requireNonNull(getClass().getResource("username.txt")).toURI());
+                usernameFile = new File(Objects.requireNonNull(getClass().getResourceAsStream("username.txt")).toString());
                 Scanner sc = new Scanner(usernameFile);
 
                 if (sc.hasNextLine()) {
@@ -123,7 +123,7 @@ public class Home implements Initializable {
                 }
 
                 sc.close();
-            } catch (IOException | URISyntaxException e) {
+            } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
         }

@@ -28,6 +28,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class Game {
@@ -126,7 +127,7 @@ public class Game {
         loader.setVisible(true);
         loader.setDisable(false);
 
-        Media media = new Media(videoURL);
+        Media media = new Media(Objects.requireNonNull(getClass().getResource(videoURL)).toString());
         MediaPlayer player = new MediaPlayer(media);
         player.play();
         player.setAutoPlay(true);
@@ -160,6 +161,8 @@ public class Game {
                 restartContainer.toFront();
             }
         });
+
+//        System.out.println(player.getStatus());
 
         mediaView.setMediaPlayer(player);
     }
