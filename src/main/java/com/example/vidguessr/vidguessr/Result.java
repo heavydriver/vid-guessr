@@ -69,7 +69,7 @@ public class Result implements Initializable {
         finalScoreText.setText(String.valueOf(totalScore));
 
         LeaderBoardDatabase db = new LeaderBoardDatabase("easy");
-        db.updateLeaderboard("savage", totalScore);
+        db.updateLeaderboard(Home.username, totalScore);
 
         leaderboard = db.getLeaderboard();
     }
