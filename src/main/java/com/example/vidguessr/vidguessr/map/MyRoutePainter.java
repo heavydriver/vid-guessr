@@ -1,5 +1,14 @@
+/**
+ * Paints a dotted line between the location of the marker placed by the user and
+ * the actual location of the video
+ * @author Varun Mange
+ * Collaborators: Azfar Islam, Martin Steiger
+ * Teacher Name: Ms. Bailey
+ * Period: 5th
+ * Due Date: 5/10/2024
+ */
 
-package com.example.vidguessr.vidguessr;
+package com.example.vidguessr.vidguessr.map;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -14,18 +23,14 @@ import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.painter.Painter;
 
-/**
- * Paints a route
- * @author Martin Steiger
- */
 public class MyRoutePainter implements Painter<JXMapViewer>
 {
-    private Color color = Color.RED;
     private boolean antiAlias = true;
 
     private List<GeoPosition> track;
 
     /**
+     * Instantiates the MyRouterPainter with the given track
      * @param track the track
      */
     public MyRoutePainter(List<GeoPosition> track)
@@ -35,6 +40,13 @@ public class MyRoutePainter implements Painter<JXMapViewer>
         this.track = new ArrayList<GeoPosition>(track);
     }
 
+    /**
+     * Uses graphics 2D to paint the route
+     * @param g The Graphics2D to render to.
+     * @param map an optional configuration parameter.
+     * @param w width of the area to paint.
+     * @param h height of the area to paint.
+     */
     @Override
     public void paint(Graphics2D g, JXMapViewer map, int w, int h)
     {
@@ -57,16 +69,11 @@ public class MyRoutePainter implements Painter<JXMapViewer>
 
         drawRoute(g, map);
 
-//        // do the drawing again
-//        g.setColor(color);
-//        g.setStroke(new BasicStroke(2));
-//
-//        drawRoute(g, map);
-
         g.dispose();
     }
 
     /**
+     * Draws the dotted line between two points
      * @param g the graphics object
      * @param map the map
      */

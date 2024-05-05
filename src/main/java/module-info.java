@@ -23,4 +23,10 @@ module com.example.vidguessr.vidguessr {
 
     opens com.example.vidguessr.vidguessr to javafx.fxml;
     exports com.example.vidguessr.vidguessr;
+    exports com.example.vidguessr.vidguessr.map;
+    opens com.example.vidguessr.vidguessr.map to javafx.fxml;
+    exports com.example.vidguessr.vidguessr.screens;
+    opens com.example.vidguessr.vidguessr.screens to javafx.fxml;
+    exports com.example.vidguessr.vidguessr.utility;
+    opens com.example.vidguessr.vidguessr.utility to javafx.fxml;
 }

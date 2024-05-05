@@ -18,7 +18,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #222831;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vidguessr.vidguessr.Game">
+<GridPane alignment="CENTER" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #222831;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vidguessr.vidguessr.screens.Game">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
