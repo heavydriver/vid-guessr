@@ -158,6 +158,15 @@ public class Home implements Initializable
                     {
                         username = sc.nextLine();
                         System.out.println(username);
+                    } else {
+                        gameContainer.setDisable(true);
+
+                        usernameContainer.setVisible(true);
+                        usernameContainer.setDisable(false);
+
+                        new FadeInUp(usernameContainer).play();
+
+                        Platform.runLater(() -> submitButton.getScene().getRoot().requestFocus());
                     }
 
                     sc.close();

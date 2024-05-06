@@ -75,10 +75,64 @@
   ],
   "medium": [
     {
-      "locationName": "",
-      "locationLatitude": "",
-      "locationLongitude": "",
-      "videoURL": ""
+      "locationName": "Akihabara, Japan",
+      "locationLatitude": "35.6996979523026",
+      "locationLongitude": "139.7713547871955",
+      "videoURL": "videos/medium/akihabara.mp4"
+    },
+    {
+      "locationName": "Grand Canyon, USA",
+      "locationLatitude": "36.06224240271639",
+      "locationLongitude": "-112.08759893959927",
+      "videoURL": "videos/medium/grandCanyon.mp4"
+    },
+    {
+      "locationName": "Hawaii, USA",
+      "locationLatitude": "21.27663177938066",
+      "locationLongitude": "-157.8283029327219",
+      "videoURL": "videos/medium/hawaii.mp4"
+    },
+    {
+      "locationName": "Lauterbrunnen, Switzerland",
+      "locationLatitude": "46.595932701754904",
+      "locationLongitude": "7.90941846939341",
+      "videoURL": "videos/medium/lauterbrunnen.mp4"
+    },
+    {
+      "locationName": "Machu Picchu, Peru",
+      "locationLatitude": "-13.162844806561106",
+      "locationLongitude": "-72.54530143173719",
+      "videoURL": "videos/medium/machuPicchu.mp4"
+    },
+    {
+      "locationName": "Niagara Falls",
+      "locationLatitude": "43.080539735259514",
+      "locationLongitude": "-79.07834113246788",
+      "videoURL": "videos/medium/niagaraFalls.mp4"
+    },
+    {
+      "locationName": "Notre-dame Cathedral, Paris, France",
+      "locationLatitude": "48.853017791889",
+      "locationLongitude": "2.3498895615355284",
+      "videoURL": "videos/medium/notreDameCathedral.mp4"
+    },
+    {
+      "locationName": "Rio de Janeiro, Brazil",
+      "locationLatitude": "-22.9088521943032",
+      "locationLongitude": "-43.17655123662084",
+      "videoURL": "videos/medium/rioDeJaneiro.mp4"
+    },
+    {
+      "locationName": "Tokyo Solamachi, Japan",
+      "locationLatitude": "35.71032549086136",
+      "locationLongitude": "139.81159320250697",
+      "videoURL": "videos/medium/tokyoSolamachi.mp4"
+    },
+    {
+      "locationName": "Vancouver, BC, Canada",
+      "locationLatitude": "49.27237308359912",
+      "locationLongitude": "-123.12488000737093",
+      "videoURL": "videos/medium/vancouver.mp4"
     }
   ],
   "hard": [
