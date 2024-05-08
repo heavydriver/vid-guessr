@@ -101,7 +101,6 @@ public class MyMap extends JComponent
             @Override
             public void mapClicked(GeoPosition geoPosition)
             {
-                System.out.println(geoPosition.getLatitude() + " " + geoPosition.getLongitude());
                 GeoPosition marker = new GeoPosition(
                         geoPosition.getLatitude(), geoPosition.getLongitude());
 

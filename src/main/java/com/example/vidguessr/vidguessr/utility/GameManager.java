@@ -84,7 +84,7 @@ public class GameManager
      */
     private void pickRandomLocations()
     {
-        Set<Integer> randomIndexes = getRandomIndexes();
+        List<Integer> randomIndexes = getRandomIndexes();
 
         for (int idx : randomIndexes)
         {
@@ -94,23 +94,23 @@ public class GameManager
                     Double.parseDouble((String) location.get(LONGITUDE_KEY)),
                     (String) location.get(URL_KEY)));
         }
-
-        System.out.println(randomlySelectedLocations);
     }
 
     /**
-     * Generates a set of 5 random numbers from 0 to the size of allLocations List
+     * Generates a list of 5 random numbers from 0 to the size of allLocations List
      * @return the 5 randomly selected indexes
      */
-    private  Set<Integer> getRandomIndexes()
+    private  List<Integer> getRandomIndexes()
     {
-        Set<Integer> randomIndexes = new HashSet<>();
+        List<Integer> randomIndexes = new ArrayList<>();
         Random randomGenerator = new Random();
 
         while (randomIndexes.size() < MAX_LOCATIONS)
         {
             int randomNumber = randomGenerator.nextInt(allLocations.size());
-            randomIndexes.add(randomNumber);
+
+            if (!randomIndexes.contains(randomNumber))
+                randomIndexes.add(randomNumber);
         }
 
         return randomIndexes;

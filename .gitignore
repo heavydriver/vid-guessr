@@ -39,3 +39,4 @@ build/
 .DS_Store
 
 src/main/resources/com/example/vidguessr/vidguessr/videos
+src/main/resources/com/example/vidguessr/vidguessr/sounds

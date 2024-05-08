@@ -55,6 +55,12 @@
       "videoURL": "videos/easy/midtownManhattan.mp4"
     },
     {
+      "locationName": "Red Square, Moscow, Russia",
+      "locationLatitude": "55.75398764013696",
+      "locationLongitude": "37.62082097897945",
+      "videoURL": "videos/easy/moscow.mp4"
+    },
+    {
       "locationName": "Statue of Liberty, New York, USA",
       "locationLatitude": "40.689456748734365",
       "locationLongitude": "-74.04436594363615",
@@ -79,6 +85,24 @@
       "locationLatitude": "35.6996979523026",
       "locationLongitude": "139.7713547871955",
       "videoURL": "videos/medium/akihabara.mp4"
+    },
+    {
+      "locationName": "Amsterdam, Netherlands",
+      "locationLatitude": "52.37242474518208",
+      "locationLongitude": "4.90395668713608",
+      "videoURL": "videos/medium/amsterdam.mp4"
+    },
+    {
+      "locationName": "China Town, Bangkok, Thailand",
+      "locationLatitude": "13.740407463370445",
+      "locationLongitude": "100.50978367654771",
+      "videoURL": "videos/medium/bangkok.mp4"
+    },
+    {
+      "locationName": "Table Mountain, Cape Town, South Africa",
+      "locationLatitude": "-33.958200745752485",
+      "locationLongitude": "18.40318024671277",
+      "videoURL": "videos/medium/capeTown.mp4"
     },
     {
       "locationName": "Grand Canyon, USA",
@@ -123,12 +147,6 @@
       "videoURL": "videos/medium/rioDeJaneiro.mp4"
     },
     {
-      "locationName": "Tokyo Solamachi, Japan",
-      "locationLatitude": "35.71032549086136",
-      "locationLongitude": "139.81159320250697",
-      "videoURL": "videos/medium/tokyoSolamachi.mp4"
-    },
-    {
       "locationName": "Vancouver, BC, Canada",
       "locationLatitude": "49.27237308359912",
       "locationLongitude": "-123.12488000737093",
@@ -137,10 +155,82 @@
   ],
   "hard": [
     {
-      "locationName": "",
-      "locationLatitude": "",
-      "locationLongitude": "",
-      "videoURL": ""
+      "locationName": "Amman, Jordan",
+      "locationLatitude": "31.951941766132006",
+      "locationLongitude": "35.93937149228598",
+      "videoURL": "videos/hard/amman.mp4"
+    },
+    {
+      "locationName": "Chennai, India",
+      "locationLatitude": "13.083376233767467",
+      "locationLongitude": "80.27552031284387",
+      "videoURL": "videos/hard/chennai.mp4"
+    },
+    {
+      "locationName": "Galapagos Islands, Ecuador",
+      "locationLatitude": "-0.7422220550182671",
+      "locationLongitude": "-90.30380140386194",
+      "videoURL": "videos/hard/galapagosIslands.mp4"
+    },
+    {
+      "locationName": "Hadiboh town, Socotra island, Yemen",
+      "locationLatitude": "12.650183164119303",
+      "locationLongitude": "54.01887314013894",
+      "videoURL": "videos/hard/hadibohTown.mp4"
+    },
+    {
+      "locationName": "Lauterbrunnen, Switzerland",
+      "locationLatitude": "46.59390216072449",
+      "locationLongitude": "7.909143317385479",
+      "videoURL": "videos/hard/lauterbrunnen.mp4"
+    },
+    {
+      "locationName": "Lusaka, Zambia",
+      "locationLatitude": "-15.411977378012772",
+      "locationLongitude": "28.277264139330523",
+      "videoURL": "videos/hard/lusaka.mp4"
+    },
+    {
+      "locationName": "Mount Glorious, Australia",
+      "locationLatitude": "-27.332881633557047",
+      "locationLongitude": "152.76657022402438",
+      "videoURL": "videos/hard/mountGlorious.mp4"
+    },
+    {
+      "locationName": "Puerto Natales, Chile",
+      "locationLatitude": "-51.72703390434065",
+      "locationLongitude": "-72.50700821691593",
+      "videoURL": "videos/hard/puertoNatales.mp4"
+    },
+    {
+      "locationName": "Buddha Dordenma Statue, Thimphu, Bhutan",
+      "locationLatitude": "27.44380620246566",
+      "locationLongitude": "89.64531960692653",
+      "videoURL": "videos/hard/thimphu.mp4"
+    },
+    {
+      "locationName": "Tokyo Solamachi, Japan",
+      "locationLatitude": "35.71032549086136",
+      "locationLongitude": "139.81159320250697",
+      "videoURL": "videos/hard/tokyoSolamachi.mp4"
+    },
+    {
+      "locationName": "Torshavn, Faroe Islands, Denmark",
+      "locationLatitude": "62.011818287981335",
+      "locationLongitude": "-6.774229042533084",
+      "videoURL": "videos/hard/torshavn.mp4"
+    },
+    {
+      "locationName": "Transylvania, Romania",
+      "locationLatitude": "46.19869924127984",
+      "locationLongitude": "25.219562584223898",
+      "videoURL": "videos/hard/transylvania.mp4"
+    },
+    {
+      "locationName": "Zindabazar, Sylhet, Bangladesh",
+      "locationLatitude": "24.89498196817986",
+      "locationLongitude": "91.86901549411802",
+      "videoURL": "videos/hard/zindabazar.mp4"
     }
   ]
 }

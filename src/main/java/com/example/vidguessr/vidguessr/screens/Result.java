@@ -15,6 +15,7 @@ import animatefx.animation.SlideInUp;
 import com.example.vidguessr.vidguessr.Main;
 import com.example.vidguessr.vidguessr.utility.LeaderBoardDatabase;
 import com.mongodb.MongoException;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,10 +31,7 @@ import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -81,6 +79,8 @@ public class Result implements Initializable
     public ProgressIndicator loader;
     @FXML
     public GridPane leaderboardTable;
+    @FXML
+    public Label difficultyLabel;
 
     /**
      * Sets the difficulty for this game and initializes the state of the game
@@ -108,8 +108,6 @@ public class Result implements Initializable
      */
     public void displayResult() throws MongoException
     {
-        finalScoreText.setText(String.valueOf(totalScore));
-
         LeaderBoardDatabase db = new LeaderBoardDatabase(difficulty);
         db.updateLeaderboard(Home.username, totalScore);
 
@@ -177,6 +175,14 @@ public class Result implements Initializable
                         @Override
                         protected Void call() throws Exception
                         {
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    finalScoreText.setText(String.valueOf(totalScore));
+                                    difficultyLabel.setText("(" + difficulty + ")");
+                                }
+                            });
+
                             displayResult();
                             return null;
                         }

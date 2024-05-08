@@ -28,7 +28,6 @@ import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.stage.Stage;
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.viewer.GeoPosition;
 
@@ -49,6 +48,9 @@ public class Game
     public static final String GREEN_COLOR = "-fx-background-color: #41B06E;";
     public static final String ORANGE_COLOR = "-fx-background-color: #FF8A08;";
     public static final String RED_COLOR = "-fx-background-color: #F05454;";
+    public static final String GREEN_SOUND = "sounds/green.mp3";
+    public static final String ORANGE_SOUND = "sounds/orange.mp3";
+    public static final String RED_SOUND = "sounds/red.mp3";
 
     private Scene scene;
     private Parent root;
@@ -140,9 +142,6 @@ public class Game
             actualPosition = new GeoPosition(currentLocation.getLatitude(), currentLocation.getLongitude());
         } else
         {
-            System.out.println("done");
-            System.out.println(totalScore);
-            System.out.println(roundScores);
             mediaView.getMediaPlayer().stop();
 
             try
@@ -279,16 +278,31 @@ public class Game
             roundResult.setStyle(GREEN_COLOR);
             roundTextLabel.setText(GameManager.highMotivationalExpressions.get(
                     new Random().nextInt(GameManager.highMotivationalExpressions.size())) + "!");
+
+            Media media = new Media(Objects.requireNonNull(
+                    Main.class.getResource(GREEN_SOUND)).toString());
+            MediaPlayer player = new MediaPlayer(media);
+            player.play();
         } else if (score >= 1000)
         {
             roundResult.setStyle(ORANGE_COLOR);
             roundTextLabel.setText(GameManager.mediumMotivationalExpressions.get(
                     new Random().nextInt(GameManager.mediumMotivationalExpressions.size())) + "!");
+
+            Media media = new Media(Objects.requireNonNull(
+                    Main.class.getResource(ORANGE_SOUND)).toString());
+            MediaPlayer player = new MediaPlayer(media);
+            player.play();
         } else
         {
             roundResult.setStyle(RED_COLOR);
             roundTextLabel.setText(GameManager.lowMotivationalExpressions.get(
                     new Random().nextInt(GameManager.lowMotivationalExpressions.size())) + "!");
+
+            Media media = new Media(Objects.requireNonNull(
+                    Main.class.getResource(RED_SOUND)).toString());
+            MediaPlayer player = new MediaPlayer(media);
+            player.play();
         }
 
         roundScoreLabel.setText(String.valueOf(score));
@@ -404,6 +418,7 @@ public class Game
                     new Dimension((int) mapView.getWidth(), (int) mapView.getHeight()));
 
             swingNode.setContent(map);
+            swingNode.setCache(false);
         });
     }
 }
