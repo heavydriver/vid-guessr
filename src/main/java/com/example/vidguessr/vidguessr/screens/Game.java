@@ -207,6 +207,17 @@ public class Game
             restartContainer.toFront();
         });
 
+        player.setOnStalled(() ->
+        {
+            loader.setVisible(false);
+            loader.setDisable(true);
+
+            restartContainer.setVisible(true);
+            restartContainer.setDisable(false);
+
+            restartContainer.toFront();
+        });
+
         mediaView.setMediaPlayer(player);
     }
 
@@ -217,7 +228,7 @@ public class Game
     @FXML
     public void showMap(ActionEvent event)
     {
-        mediaView.getMediaPlayer().pause();
+//        mediaView.getMediaPlayer().pause();
 
         new Pulse(guessButton).play();
 
@@ -250,6 +261,8 @@ public class Game
     @FXML
     public void confirmPlayerLocation(ActionEvent event)
     {
+        mediaView.getMediaPlayer().pause();
+
         confirmButton.setVisible(false);
         confirmButton.setDisable(true);
 
@@ -283,6 +296,8 @@ public class Game
                     Main.class.getResource(GREEN_SOUND)).toString());
             MediaPlayer player = new MediaPlayer(media);
             player.play();
+
+            player.setOnEndOfMedia(() -> player.dispose());
         } else if (score >= 1000)
         {
             roundResult.setStyle(ORANGE_COLOR);
@@ -293,6 +308,8 @@ public class Game
                     Main.class.getResource(ORANGE_SOUND)).toString());
             MediaPlayer player = new MediaPlayer(media);
             player.play();
+
+            player.setOnEndOfMedia(() -> player.dispose());
         } else
         {
             roundResult.setStyle(RED_COLOR);
@@ -303,6 +320,8 @@ public class Game
                     Main.class.getResource(RED_SOUND)).toString());
             MediaPlayer player = new MediaPlayer(media);
             player.play();
+
+            player.setOnEndOfMedia(() -> player.dispose());
         }
 
         roundScoreLabel.setText(String.valueOf(score));
@@ -317,6 +336,7 @@ public class Game
      */
     public void startNextRound()
     {
+        mediaView.getMediaPlayer().dispose();
         new FadeOutDown(mapContainer).play();
         mapContainer.setDisable(true);
 
@@ -344,7 +364,7 @@ public class Game
         else
             unmuteButton.setDisable(false);
 
-        mediaView.getMediaPlayer().play();
+//        mediaView.getMediaPlayer().play();
     }
 
     /**
