@@ -100,6 +100,8 @@ public class Game
     public VBox restartContainer;
     @FXML
     public Button restartButton;
+    @FXML
+    public Button clickHereMapLabel;
 
     /**
      * Sets the difficulty for this game and initializes the state of the game
@@ -139,7 +141,8 @@ public class Game
         {
             Location currentLocation = locations.get(currentRound - 1);
             playVideo(currentLocation.getVideoURL());
-            actualPosition = new GeoPosition(currentLocation.getLatitude(), currentLocation.getLongitude());
+            actualPosition = new GeoPosition(currentLocation.getLatitude(),
+                    currentLocation.getLongitude());
         } else
         {
             mediaView.getMediaPlayer().stop();
@@ -419,6 +422,16 @@ public class Game
         {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Hides the "Click here" label
+     * @param event the button click event
+     */
+    @FXML
+    public void hideMapLabel(ActionEvent event) {
+        clickHereMapLabel.setVisible(false);
+        clickHereMapLabel.setDisable(true);
     }
 
     /**

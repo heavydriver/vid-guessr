@@ -99,6 +99,11 @@
                            </cursor>
                         </Button>
                         <AnchorPane fx:id="mapView" prefHeight="565.0" prefWidth="800.0" />
+                        <Button fx:id="clickHereMapLabel" mnemonicParsing="false" onAction="#hideMapLabel" prefHeight="523.0" prefWidth="868.0" style="-fx-background-color: transparent;" text="Click here to load the map" textFill="#dadada">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Button>
                      </children>
                   </StackPane>
                   <StackPane prefHeight="93.0" prefWidth="800.0">
