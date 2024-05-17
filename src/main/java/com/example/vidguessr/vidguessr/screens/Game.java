@@ -450,6 +450,8 @@ public class Game
             map.setPreferredSize(
                     new Dimension((int) mapView.getWidth(), (int) mapView.getHeight()));
 
+//            map.setEnabled(true);
+
             swingNode.setContent(map);
             swingNode.setCache(false);
         });
